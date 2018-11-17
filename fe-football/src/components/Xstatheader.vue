@@ -18,10 +18,10 @@
 export default {};
 </script>
 <style>
-.ranking-nav[data-v-4a1f674c] {
+.ranking-nav {
   position: fixed;
   display: table;
-  display: box;
+  display: flex;
   display: -ms-flexbox;
   display: flex;
   z-index: 30;
@@ -31,7 +31,7 @@ export default {};
   border-bottom: 1px solid #ccc;
   background-color: #000;
 }
-.ranking-nav a[data-v-4a1f674c] {
+.ranking-nav a {
   position: relative;
   width: 0;
   display: table-cell;
@@ -42,7 +42,7 @@ export default {};
   color: #414141;
   text-align: center;
 }
-.ranking-nav .active span[data-v-4a1f674c] {
+.ranking-nav .active span {
   border-bottom: 2px solid #ffab5d;
   padding-bottom: 4px;
   color: #fff;

@@ -1,31 +1,59 @@
 <template>
-     <li  class="news-list-item">
-            <a  href="javascript:;">
-                <div  class="news-list-img-side">
-                    <img  src="https://img1.dongqiudi.com/fastdfs3/M00/7F/16/180x135/crop/-/ChOxM1vdAvCATscgAAQHaFrn_f0903.jpg" lazy="loaded">
-                    </div>
-                <div  class="news-list-info">
-                    <h3 >9次，鲁能进亚冠次数中超最多</h3>
-                    <p >鲁能上次参加亚冠是2016赛季，这也是他们时隔三年再获亚冠资格。</p>
-                    <div  class="news-list-tag">
-                        <span  class="news-list-comment">1292评论</span>
-                        <span  class="news-list-tags-collection">
-                            
-                            
-                            </span>
-                    </div>
-                </div>
-            </a>
-        </li>
+    <div class="article-container">
+        <div class="article-content">
+              <article class="show-more" v-html="html">
+            
+            
+              </article> 
+        
+        
+        </div>
+    </div>
+    
         
 </template>
 <script>
+import axios from "axios";
 export default {
-    
-}
+  data() {
+    return {
+      id: "",
+      html: ""
+    };
+  },
+  mounted() {
+    var self = this;
+    this.id = this.$attrs.content;
+    axios
+      .get("http://localhost:3000/api/getDetail", {
+        params: {
+          id: self.id
+        }
+      })
+      .then(function(res) {
+        self.html = res.data;
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
+};
 </script>
-<style>
-
+<style scoped>
+ p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+.article-container .show-more h4 {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+    font-weight: 400;
+}
 </style>
 
 

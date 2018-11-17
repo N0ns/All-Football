@@ -4,7 +4,7 @@
       <ul class="news-list">
   
         <li v-if="label==='热门'||label==='懂球号'" v-for="(item,index) in articles1" :key="index" class="news-list-item">
-          <a href="javascript:;">
+          <a :href="'#/detail?id='+item.id">
             <div class="news-list-img-side">
               <img :src="item.thumb" lazy="loaded">
             </div>
@@ -23,7 +23,7 @@
           </a>
         </li>
         <li v-if="label!=='热门'||label!=='比赛'" v-for="(item,index) in articles1" :key="'a'+index" class="news-list-item">
-          <a href="javascript:;">
+          <a :href="'#/detail?id='+item.id">
             <div class="news-list-img-side">
               <img :src="item.thumb" lazy="loaded">
             </div>
@@ -97,6 +97,9 @@ export default {
     };
   },
   mounted() {
+    document.onscroll=function(e){
+      console.log(document)
+    }
     this.api = this.$store.state.api;
     this.getData();
   },
@@ -111,7 +114,6 @@ export default {
         })
         .then(function(response) {
           
-         
           self.content = response.data;
           if(self.label!==self.content.label){
             self.articles1 = []
@@ -165,6 +167,7 @@ export default {
             self.label = "数据";
             self.getMore(self.content[0].sub_tabs[self.sub_tabs].url);
           }
+          console.log(self.articles1)
         })
         .catch(function(error) {
           console.log(error);

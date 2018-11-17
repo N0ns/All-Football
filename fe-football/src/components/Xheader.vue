@@ -62,9 +62,9 @@ export default {
         }
         self.$store.state.api = self.api
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      // .catch(function(error) {
+      //   // console.log(error);
+      // });
   },
   methods: {
     setChannel(index, el) {
@@ -75,7 +75,6 @@ export default {
         if(el.season){
           self.api = el.season.url
         }else{
-          console.log(el.sub_tabs[0].url)
           self.api = el.sub_tabs[0].url
         }
         
@@ -104,7 +103,6 @@ export default {
         self.api = self.menu[self.item][self.idx].api;
       }
       this.$store.state.api = this.api
-      // console.log(this.$store.state.api)
     }
   }
 };
@@ -129,7 +127,7 @@ export default {
   background-color: #16b13a;
   color: #fff;
   position: relative;
-  display: box;
+  display: flex;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: end;

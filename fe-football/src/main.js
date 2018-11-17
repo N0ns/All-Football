@@ -4,7 +4,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 import index from './containers/index.vue'
+import detail from './containers/detail.vue'
 import Vuex from 'vuex'
+import "../lib/css/common.css";
 Vue.use(Vuex)
 // 创建中介
 const store = new Vuex.Store({
@@ -68,6 +70,10 @@ const routes = [{
   {
     path: '/stat',
     component: index
+  },
+  {
+    path: '/detail',
+    component: detail
   }
 
 ]
