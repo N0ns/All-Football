@@ -71,7 +71,7 @@
       <div class="more-btn" style="display:block;">
           <img src="https://static1.dongqiudi.com/m/dist/img/m-load.5e3d98d.gif"><span>加载中...</span>
       </div>
-</div>
+    </div>
   </div>
 </template>
 
@@ -97,10 +97,17 @@ export default {
     };
   },
   mounted() {
-    document.onscroll=function(e){
-      console.log(document)
+    var self= this
+    console.log(this.$route.path)
+    if(this.$route.path === '/home'){
+      window.addEventListener('scroll',this.onReachBottom)
+    }else{
+      window.removeEventListener('scroll',function(){
+
+      })
     }
-    this.api = this.$store.state.api;
+    
+    this.api = this.$store.state.api
     this.getData();
   },
   methods: {
@@ -167,7 +174,6 @@ export default {
             self.label = "数据";
             self.getMore(self.content[0].sub_tabs[self.sub_tabs].url);
           }
-          console.log(self.articles1)
         })
         .catch(function(error) {
           console.log(error);
@@ -201,6 +207,12 @@ export default {
       }
       
       this.$store.state.api = api
+    },
+    onReachBottom(){
+      if(scrollY + window.innerHeight >= document.body.offsetHeight) {
+        this.moreNews()
+      }
+      
     }
   },
   computed: {
@@ -212,6 +224,14 @@ export default {
     $route(to) {
       this.getData();
       this.articles1 = []
+      console.log(this.$route.path)
+      if(this.$route.path === '/home'){
+      window.addEventListener('scroll',this.onReachBottom)
+      }else{
+      window.removeEventListener('scroll',function(){
+
+      })
+    }
     },
     change: function(to) {
       this.getData();
